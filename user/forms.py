@@ -1,6 +1,6 @@
 from django import forms
 from .models import UserModel,CreateUserModel
-from django.forms.widgets import PasswordInput
+from django.forms.widgets import PasswordInput, EmailInput
 class CreateUserForm(forms.ModelForm):
     class Meta:
         model = CreateUserModel
