@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+{% block title %}
+    재고 현황
+{% endblock %}
+{% block content %}
+<div class="container" style="width:70%">
+  <h2 class="text-center my-4">재고 현황</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+            <th scope="col">처리</th>
+          <th scope="col">주문날짜</th>
+          <th scope="col">담당자</th>
+          <th scope="col">제품명</th>
+          <th scope="col">주문/재고</th>
+          <th scope="col">개별가격</th>
+          <th scope="col">설명</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for ord in all_orders %}
+        <tr >
+        <th scope="row" >{{ ord.marker }}</th>
+          <td>{{ ord.created_at }}</td>
+            <td>{{ ord.order.producter }}</td>
+            <td>{{ ord.order.name }}</td>
+                <td>{{ord.amount  }}/{{ord.order.amount  }}</td>
+          <td>{{ ord.order.prise }}</td>
+
+          {% comment %} <td>{{ cat.product.inbound_date }}</td>
+          <td>{{ cat.product.outbound_date }}</td> {% endcomment %}
+          <td>{{ ord.amount }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@ class Order(models.Model):
     order = models.ForeignKey(Products, on_delete=models.CASCADE)
     amount = models.PositiveBigIntegerField()
     code = models.BigAutoField(primary_key=True)
-
+    marker = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

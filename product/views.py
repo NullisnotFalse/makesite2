@@ -27,5 +27,5 @@ def products_view(request):
 
             return render(request,'product/products.html',{'all_products':all_products})
         else:
-            return redirect('sign-in')
+            return redirect('/log-in')
     return render(request, 'product/products.html')
