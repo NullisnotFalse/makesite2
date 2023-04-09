@@ -17,7 +17,7 @@ def create_user_view(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():  # 2
-            print("work")
+            print("save")
             username = request.POST.get('username', '')
             email = request.POST.get('email', '')
             password1 = request.POST.get('password_check1', '')
@@ -25,6 +25,7 @@ def create_user_view(request):
 
             if password1 ==password2:
                 UserModel.objects.create_user(username=username,password=password1,email=email)
+                return redirect('log-in')
         else:
             print(form.errors)
     else:
