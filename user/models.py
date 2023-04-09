@@ -9,3 +9,4 @@ class UserModel(AbstractUser):
 class CreateUserModel(UserModel):
     password_check1= models.CharField(max_length=20)
     password_check2 = models.CharField(max_length=20)
+

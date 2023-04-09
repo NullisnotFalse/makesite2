@@ -11,4 +11,7 @@ class CreateUserForm(forms.ModelForm):
 class LogInForm(forms.ModelForm):
     class Meta:
         model =UserModel
-        fields = ['username','password','email']
+        fields = ['username','password']
+        labels ={'username':'아이디','password':'패스워드'}
+        widgets = {"password": PasswordInput()}
+        help_texts = {'username': None}

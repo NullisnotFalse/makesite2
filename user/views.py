@@ -1,13 +1,15 @@
 from django.shortcuts import render
-from .forms import CreateUserForm
+from .forms import CreateUserForm,LogInForm
 from .models import UserModel
 from django.shortcuts import render, redirect
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 #홈페이지
 def home(request):
     user = request.user.is_authenticated
     if user:# 로그인 상태
-        return redirect('log-in')
+        return render(request,'home.html')
     else:
         return redirect('log-in')
 
@@ -32,8 +34,27 @@ def create_user_view(request):
 
 
 def log_in_view(request):
-    return render(request, 'user/log_in.html')
+    if request.method == "POST":
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        me = auth.authenticate(request, username=username,password=password)
+        if me is not None:
+            print("로그인")
+            auth.login(request, me)
+            return redirect('/')
+        else:
+            return redirect('/log-in', {'error': '유저이름 혹은 패스워드를 확인 해 주세요'})
+    elif request.method =='GET':
+        user = request.user.is_authenticated
+        if user:
+            return redirect('/')
+    form = LogInForm()
+    return render(request, 'user/log_in.html',{'form': form})
 
 
 
 
+@login_required
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
