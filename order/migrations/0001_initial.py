@@ -12,19 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Products',
+            name='Order',
             fields=[
-                ('name', models.CharField(max_length=20)),
-                ('code', models.BigAutoField(primary_key=True, serialize=False)),
-                ('description', models.TextField()),
-                ('prise', models.PositiveBigIntegerField()),
                 ('amount', models.PositiveBigIntegerField()),
-                ('size', models.CharField(choices=[('S', 'Small'), ('M', 'Medium'), ('L', 'Large'), ('F', 'Free')], max_length=1)),
+                ('code', models.BigAutoField(primary_key=True, serialize=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
             options={
-                'db_table': 'products',
+                'db_table': 'orders',
             },
         ),
     ]

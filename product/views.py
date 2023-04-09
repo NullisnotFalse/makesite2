@@ -10,7 +10,6 @@ def create_product_view(request):
         create_form = CreateProductForm(request.POST)
         if create_form.is_valid():  # 2 # 5
             print("save")
-
             create_form.save()
             return redirect('/')
         else:
